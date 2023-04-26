@@ -62,12 +62,11 @@ export async function getSearch(query, version) {
     const parsedTitleLink = parser(item).find("h4 a").attr("href");
     const parsedText = parser(item).find("p").text();
     const parsedBlock = parser(item).find("pre").text();
-    // length of 200 because for some reason one of the entries contains all of the methods on the page which becomes unreadable
+    // length of 200 because for some reason one of the entries contains all of the methods on the page
     if (parsedTitle !== "" && parsedTitle.length < 200 && parsedText !== "" && parsedBlock !== "") {
       const splittedText = parsedText.replaceAll(".", ".\n").split(":");
       results.push({
         id: Math.random().toString(36),
-        index,
         title: parsedTitle,
         link: `https://rubyapi.org${parsedTitleLink}`,
         textAboveBlock: splittedText[0],

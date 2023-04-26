@@ -5,7 +5,7 @@ import { getSearch, getRubyVersions } from "./api";
 export default function SearchDocs() {
   const [searchText, setSearchText] = useState("");
   const [rubyVersions, setRubyVersions] = useState([]);
-  const [selectedRubyVersion, setSelectedRubyVersion] = useState("3.2");
+  const [selectedRubyVersion, setSelectedRubyVersion] = useState("");
   const [results, setResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
 
@@ -26,7 +26,9 @@ export default function SearchDocs() {
   }, []);
 
   useEffect(() => {
-    showToast({ title: "Ruby version", message: `Ruby version ${selectedRubyVersion} selected!` });
+    if (selectedRubyVersion !== "") {
+      showToast({ title: "Ruby version", message: `Ruby version ${selectedRubyVersion} selected!` });
+    }
   }, [selectedRubyVersion]);
 
   useEffect(() => {
