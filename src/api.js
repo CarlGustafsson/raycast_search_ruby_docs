@@ -53,7 +53,7 @@ export async function getSearch(query, version) {
   const results = [];
 
   // TODO: Find a way to get the divs we want instead of looping through all of the divs
-  parser("div").map((index, item) => {
+  parser("div").map((_index, item) => {
     const parsedTitle = parser(item)
       .find("h4")
       .text()

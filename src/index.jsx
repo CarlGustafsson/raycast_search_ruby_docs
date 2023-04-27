@@ -49,7 +49,9 @@ export default function SearchDocs() {
     fetchData();
   }, [searchText, selectedRubyVersion]);
 
-  console.log("results", results);
+  const codeSectionMarkdown = (item) => {
+    return `### ${item.title}\n\n${item.textAboveBlock}\n\n\`\`\`\n${item.block}\`\`\`\n\n${item.textBelowBlock}`;
+  };
 
   return (
     <List
@@ -85,11 +87,7 @@ export default function SearchDocs() {
           <List.Item
             key={item.id}
             title={item.title}
-            detail={
-              <List.Item.Detail
-                markdown={`### ${item.title}\n\n${item.textAboveBlock}\n\n\`\`\`\n${item.block}\`\`\`\n\n${item.textBelowBlock}`}
-              />
-            }
+            detail={<List.Item.Detail markdown={codeSectionMarkdown(item)} />}
             actions={
               <ActionPanel>
                 <Action.OpenInBrowser url={item.link} />
